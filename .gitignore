@@ -1,0 +1,33 @@
+// .gitignore (vznikne při instalaci)
+# Zavislosti - kazdy si je nainstaluje pres npm install
+node_modules/
+
+# Build vystupy
+dist/
+build/
+.vite/
+
+# Lokalni konfigurace a citlive udaje
+.env
+.env.local
+.env.production
+.env.development.local
+.env.test.local
+
+# Systemove soubory
+.DS_Store
+Thumbs.db
+
+# Logy
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Editor
+.vscode/extensions.json
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?

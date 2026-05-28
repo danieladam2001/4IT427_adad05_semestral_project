@@ -1,0 +1,10 @@
+// .vscode/settings.json – je třeba ručně vytvořit
+{
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit"
+  },
+  "js/ts.tsdk.path": "node_modules/typescript/lib",
+  "editor.tabSize": 2
+}
