@@ -6,7 +6,7 @@ export interface PipelineInitialization {
 export interface PromptCandidate {
   candidate_id: string; // Identifikátor verze promptu
   prompt_text: string; // Obsah vygenerovaného promptu
-  metrics: Record<string, any>; // Metriky typu jakéhokoliv slovníku
+  metrics: Record<string, number>; // Metriky typu jakéhokoliv slovníku
 }
 
 export interface PipelineIteration {
