@@ -1,7 +1,8 @@
-import { InitialCard } from './components/InitialCard';
-import { IterationCard } from './components/IterationCard';
-import { type PipelineInitialization, type PipelineIteration } from './types/pipeline.types';
+import { PipelineInitPage } from './pages/PipelineInitPage';
+import { PipelineIterationPage } from './pages/PipelineIterationPage';
+import { type PipelineIteration } from './types/pipeline.types';
 import { usePipeline } from './context/PipelineContext';
+import { Routes, Route, NavLink } from 'react-router-dom';
 
 function App() {
   const PipelineContext = usePipeline();
@@ -10,22 +11,31 @@ function App() {
     return <></>
   }
 
-  const test_pipeline_init: PipelineInitialization = PipelineContext.pipeline.initialization_step
-  const test_pipeline_iteration: PipelineIteration = PipelineContext.pipeline.automatic_iterations[0]
+  const test_pipeline_iterations: PipelineIteration[] = PipelineContext.pipeline.automatic_iterations
 
   return (
-  <>
     <main>
-      Semestral Project
-    </main>
-    <div>
-      <InitialCard initialStep={test_pipeline_init}/>
-    </div>
-    <div>
-      <IterationCard iteration={test_pipeline_iteration}/>
-    </div>
-  </>
+      <div>
+        
+        <nav>
+          <NavLink to="/" end>Inicializační Krok</NavLink>
+          {test_pipeline_iterations.map((item) => (
+            <NavLink 
+              key={item.iteration_number} 
+              to={`/iteration/${item.iteration_number}`}
+            >
+              Iterace {item.iteration_number}
+            </NavLink>
+          ))}
+        </nav>
 
+        <Routes>
+          <Route path="/" element={<PipelineInitPage/>} />
+          <Route path="/iteration/:id" element={<PipelineIterationPage/>} />
+        </Routes>
+
+      </div>
+    </main>
   );
 }
 
