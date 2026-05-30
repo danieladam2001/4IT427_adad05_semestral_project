@@ -15,7 +15,7 @@ export function InitialCard({ initialStep }: InitialCardProps) {
 
       <div>
         <h3 className="text-xs font-bold text-zinc-500 dark:text-zinc-400 uppercase tracking-wider mb-2"> Požadované JSON Schéma </h3>
-        <pre className="p-4 bg-zinc-100 dark:bg-zinc-950 text-zinc-800 dark:text-zinc-300 rounded-xl overflow-x-auto text-xs font-mono max-h-96 leading-relaxed border border-zinc-200 dark:border-zinc-800">
+        <pre className="p-4 bg-zinc-100 dark:bg-zinc-950 text-zinc-800 dark:text-zinc-300 rounded-xl overflow-x-auto text-xs font-mono max-h-160 leading-relaxed border border-zinc-200 dark:border-zinc-800">
           <code> {JSON.stringify(initialStep.user_defined_json_schema, null, 2)} </code>
         </pre>
       </div>

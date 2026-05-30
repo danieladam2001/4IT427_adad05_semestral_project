@@ -11,6 +11,7 @@ export function PipelineIterationPage() {
   }
 
   const all_iterations = PipelineContext.pipeline.automatic_iterations;
+  const base_prompt = PipelineContext.pipeline.initialization_step.user_defined_base_prompt;
 
   const currentIteration = all_iterations.find(
     (item) => item.iteration_number === Number(id)
@@ -28,7 +29,11 @@ export function PipelineIterationPage() {
         <p className="text-zinc-500 dark:text-zinc-400 mt-1"> Detailní výsledky generování a testování variant promptů v této iteraci. </p>
       </div>
 
-      <IterationCard iteration={currentIteration} />
+      <IterationCard 
+        iteration={currentIteration} 
+        allIterations={all_iterations}
+        basePrompt={base_prompt}
+      />
     </div>
   );
 }

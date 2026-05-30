@@ -263,7 +263,7 @@ interface PipelineContextType {
 const PipelineContext = createContext<PipelineContextType | null>(null);
 
 export function PipelineProvider({ children }: { children: ReactNode }) {
-  const [pipeline, setPipeline] = useState<PipelineDataRoot>(INITIAL_PIPELINE);
+  const [pipeline] = useState<PipelineDataRoot>(INITIAL_PIPELINE);
 
   return (
     <PipelineContext.Provider value={{ pipeline }}>
