@@ -7,7 +7,7 @@ export function PipelineIterationPage() {
   const PipelineContext = usePipeline();
 
   if (!PipelineContext?.pipeline){
-    return <></>
+    return <></>;
   }
 
   const all_iterations = PipelineContext.pipeline.automatic_iterations;
@@ -17,10 +17,18 @@ export function PipelineIterationPage() {
   );
 
   if (!currentIteration) {
-    return <div>Iterace č. {id} nebyla nalezena.</div>;
+    return <div className="text-red-500 font-medium p-4 border border-red-200 rounded-xl bg-red-50">Iterace č. {id} nebyla nalezena.</div>;
   }
 
   return (
-    <IterationCard iteration={currentIteration} />
+    <div className="space-y-4">
+
+      <div className="mb-6">
+        <h1 className="text-2xl font-black tracking-tight text-zinc-900 dark:text-white sm:text-3xl"> Optimalizační Krok #{id} </h1>
+        <p className="text-zinc-500 dark:text-zinc-400 mt-1"> Detailní výsledky generování a testování variant promptů v této iteraci. </p>
+      </div>
+
+      <IterationCard iteration={currentIteration} />
+    </div>
   );
 }
