@@ -5,13 +5,25 @@ import { usePipeline } from './context/PipelineContext';
 import { Routes, Route, NavLink } from 'react-router-dom';
 
 function App() {
-  const PipelineContext = usePipeline();
+  const { pipeline, isLoading, isError, error } = usePipeline();
   
-  if (!PipelineContext?.pipeline){
-    return <></>;
+  if (isLoading) {
+    return (
+      <main className="min-h-screen bg-white dark:bg-zinc-950 flex items-center justify-center text-xs font-mono text-zinc-400">
+        loading pipeline data...
+      </main>
+    );
   }
 
-  const test_pipeline_iterations: PipelineIteration[] = PipelineContext.pipeline.automatic_iterations;
+  if (isError || !pipeline) {
+    return (
+      <main className="min-h-screen bg-white dark:bg-zinc-950 flex items-center justify-center text-xs font-mono text-red-500">
+        error: {error?.message || "failed to load pipeline data."}
+      </main>
+    );
+  }
+
+  const test_pipeline_iterations: PipelineIteration[] = pipeline.automatic_iterations;
 
   return (
     <main className="min-h-screen bg-zinc-50 dark:bg-zinc-950 text-zinc-900 dark:text-zinc-100 antialiased py-8 px-4 sm:px-6 lg:px-8">
