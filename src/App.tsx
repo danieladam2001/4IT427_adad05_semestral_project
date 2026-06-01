@@ -32,7 +32,7 @@ function App() {
           
           <NavLink to="/" end className={({ isActive }) => `
           "text-sm font-semibold px-4 py-2 rounded-lg transition-all duration-200" 
-          ${isActive ? 'bg-mauve-600 text-white shadow-sm' : 'text-zinc-600 dark:text-zinc-400 hover:bg-zinc-200/60 dark:hover:bg-zinc-800/60'}
+          ${isActive ? 'bg-teal-600/10 text-white shadow-sm ring-1 ring-inset ring-emerald-800/40' : 'text-zinc-600 dark:text-zinc-400 hover:bg-zinc-200/60 dark:hover:bg-zinc-800/60'}
           `}>
             Inicializační Krok
           </NavLink>
@@ -40,7 +40,7 @@ function App() {
           {test_pipeline_iterations.map((item) => (
             <NavLink key={item.iteration_number} to={`/iteration/${item.iteration_number}`} className={({ isActive }) => `
             "text-sm font-semibold px-4 py-2 rounded-lg transition-all duration-200" 
-            ${isActive ? 'bg-mauve-600 text-white shadow-sm' : 'text-zinc-600 dark:text-zinc-400 hover:bg-zinc-200/60 dark:hover:bg-zinc-800/60'}
+            ${isActive ? 'bg-teal-600/10 text-white shadow-sm ring-1 ring-inset ring-emerald-800/40' : 'text-zinc-600 dark:text-zinc-400 hover:bg-zinc-200/60 dark:hover:bg-zinc-800/60'}
             `}>
               Iterace {item.iteration_number}
             </NavLink>
