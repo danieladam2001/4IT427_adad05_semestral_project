@@ -13,9 +13,9 @@ export function PromptCard({ candidate, isWinner, isSelected, onClick }: PromptC
       onClick={onClick}
       className={`flex flex-col h-full rounded-2xl border p-5 shadow-sm transition-all duration-300 cursor-pointer select-none ${
         isSelected
-          ? 'bg-amber-50/50 dark:bg-zinc-900 border-amber-500 ring-2 ring-amber-500/40 transform -translate-y-1' 
+          ? 'bg-mauve-50/50 dark:bg-zinc-900 border-mauve-500 ring-2 ring-mauve-500/40 transform -translate-y-1' 
           : isWinner 
-            ? 'bg-amber-50/30 dark:bg-zinc-900 border-amber-500 ring-2 ring-amber-500/10 hover:border-amber-500' 
+            ? 'bg-mauve-50/30 dark:bg-zinc-900 border-pink-300 ring-2 ring-pink-300/10 hover:border-mauve-500' 
             : 'bg-white dark:bg-zinc-900 border-zinc-200 dark:border-zinc-800 hover:border-zinc-300 dark:hover:border-zinc-700'
       }`}
     >
@@ -25,8 +25,8 @@ export function PromptCard({ candidate, isWinner, isSelected, onClick }: PromptC
           {candidate.candidate_id} {isSelected && "• Vybráno pro Diff"}
         </h4>
         {isWinner && (
-          <span className="text-[10px] bg-amber-500 text-white font-bold px-2 py-1 rounded-full uppercase tracking-wider whitespace-nowrap shadow-sm">
-            Vítěz iterace ⭐
+          <span className="text-[10px] bg-pink-800 text-white font-bold px-2 py-1 rounded-full uppercase tracking-wider whitespace-nowrap shadow-sm">
+            Vítěz iterace ★
           </span>
         )}
       </div>

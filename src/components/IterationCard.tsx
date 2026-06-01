@@ -80,7 +80,7 @@ export function IterationCard({ iteration, allIterations, basePrompt }: Iteratio
               newValue={selectedCandidate.prompt_text}
               splitView={false}
               compareMethod={DiffMethod.WORDS}
-              useDarkTheme={document.documentElement.classList.contains('dark') || document.body.parentElement?.classList.contains('dark')}
+              useDarkTheme={true}
               styles={{
                 variables: {
                   light: {
@@ -93,7 +93,7 @@ export function IterationCard({ iteration, allIterations, basePrompt }: Iteratio
                   dark: {
                     diffViewerBackground: '#18181b',
                     addedBackground: '#042f2e',
-                    addedColor: '#2dd4bf',
+                    addedColor: '#1d9c8b',
                     removedBackground: '#450a0a',
                     removedColor: '#f87171',
                   }
@@ -104,11 +104,11 @@ export function IterationCard({ iteration, allIterations, basePrompt }: Iteratio
         </div>
       )}
 
-      <div className="bg-amber-50 dark:bg-amber-950/10 p-5 rounded-xl border border-amber-200 dark:border-amber-900/40 text-sm mt-6">
-        <span className="font-bold text-amber-800 dark:text-amber-400 text-xs uppercase tracking-wider block mb-1">
+      <div className="p-5 rounded-xl text-sm mt-6 bg-mauve-50/20 dark:bg-zinc-900/60 border-pink-100/40 ring-2 ring-pink-300/10 flex flex-col h-full rounded-2xl border">
+        <span className="font-bold text-white-800 dark:text-white-400 text-xs uppercase tracking-wider block mb-1">
           Odůvodnění výběru vítěze:
         </span>
-        <p className="text-amber-900 dark:text-amber-200 italic leading-relaxed">
+        <p className="text-white-900 dark:text-white-200 italic leading-relaxed">
           "{iteration.selection_reasoning}"
         </p>
       </div>
