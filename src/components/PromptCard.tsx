@@ -4,10 +4,11 @@ interface PromptCardProps {
   candidate: PromptCandidate;
   isWinner: boolean;
   isSelected: boolean;
+  bestMetrics: string[];
   onClick: () => void;
 }
 
-export function PromptCard({ candidate, isWinner, isSelected, onClick }: PromptCardProps) {
+export function PromptCard({ candidate, isWinner, isSelected, bestMetrics, onClick }: PromptCardProps) {
   return (
     <div 
       onClick={onClick}
@@ -43,16 +44,37 @@ export function PromptCard({ candidate, isWinner, isSelected, onClick }: PromptC
       <div>
         <h5 className="text-[10px] font-bold uppercase tracking-wider text-zinc-400 dark:text-zinc-500 mb-2">Vyhodnocení (Metrics):</h5>
         <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
-          {Object.entries(candidate.metrics).map(([key, value]) => (
-            <div key={key} className="bg-zinc-50 dark:bg-zinc-800/50 px-3 py-2 rounded-xl border border-zinc-200 dark:border-zinc-800 text-center flex flex-col justify-center min-w-[90px]">
-              <div className="text-[9px] font-bold text-zinc-400 dark:text-zinc-500 uppercase tracking-tight truncate" title={key}>
-                {key.replace('_', ' ')}
+          {Object.entries(candidate.metrics).map(([key, value]) => {
+            const isBest = bestMetrics.includes(key);
+
+            return (
+              <div 
+                key={key} 
+                className={`px-3 py-2 rounded-xl border text-center flex flex-col justify-center min-w-[90px] transition-colors duration-200 ${
+                  isBest
+                    ? 'bg-emerald-50 dark:bg-emerald-950/20 border-emerald-500/40 text-emerald-700 dark:text-emerald-400 font-bold'
+                    : 'bg-zinc-50 dark:bg-zinc-800/50 border-zinc-200 dark:border-zinc-800'
+                }`}
+                title={isBest ? "Nejlepší výsledek v této iteraci" : undefined}
+              >
+                <div 
+                  className={`text-[9px] font-bold uppercase tracking-tight truncate ${
+                    isBest ? 'text-emerald-600/70 dark:text-emerald-500/60' : 'text-zinc-400 dark:text-zinc-500'
+                  }`}
+                >
+                  {key.replace('_', ' ')}
+                </div>
+                <div 
+                  className={`text-xs mt-0.5 flex items-center justify-center gap-0.5 ${
+                    isBest ? 'text-emerald-700 dark:text-emerald-400' : 'text-zinc-800 dark:text-zinc-200'
+                  }`}
+                >
+                  {typeof value === 'number' ? (value < 1 ? `${(value * 100).toFixed(1)}%` : value) : JSON.stringify(value)}
+                  {isBest && <span className="text-[10px]">▲</span>}
+                </div>
               </div>
-              <div className="text-xs font-bold text-zinc-800 dark:text-zinc-200 mt-0.5">
-                {typeof value === 'number' ? (value < 1 ? `${(value * 100).toFixed(1)}%` : value) : JSON.stringify(value)}
-              </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </div>
 

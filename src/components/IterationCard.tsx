@@ -2,6 +2,7 @@ import { useState } from 'react';
 import ReactDiffViewer, { DiffMethod } from 'react-diff-viewer-continued';
 import { type PipelineIteration } from '../types/pipeline.types';
 import { PromptCard } from './PromptCard';
+import { getBestMetricNamesForCandidate } from '../utils/pipelineUtils';
 
 interface IterationCardProps {
   iteration: PipelineIteration;
@@ -42,21 +43,30 @@ export function IterationCard({ iteration, allIterations, basePrompt }: Iteratio
       <div>
         <h3 className="text-sm font-bold text-zinc-800 dark:text-zinc-200 mb-3">Porovnání generovaných kandidátů:</h3>
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 items-stretch">
-          {iteration.candidates.map((candidate) => (
-            <PromptCard
-              key={candidate.candidate_id} 
-              candidate={candidate} 
-              isWinner={candidate.candidate_id === iteration.winning_candidate_id}
-              isSelected={candidate.candidate_id === selectedCandidateId}
-              onClick={() => {
-                if (selectedCandidateId === candidate.candidate_id) {
-                  setSelectedCandidateId(null);
-                } else {
-                  setSelectedCandidateId(candidate.candidate_id);
-                }
-              }}
-            />
-          ))}
+          {iteration.candidates.map((candidate) => {
+
+            const currentBestMetrics = getBestMetricNamesForCandidate(
+              iteration.candidates, 
+              candidate.candidate_id
+            );
+
+            return (
+              <PromptCard
+                key={candidate.candidate_id} 
+                candidate={candidate} 
+                isWinner={candidate.candidate_id === iteration.winning_candidate_id}
+                isSelected={candidate.candidate_id === selectedCandidateId}
+                bestMetrics={currentBestMetrics}
+                onClick={() => {
+                  if (selectedCandidateId === candidate.candidate_id) {
+                    setSelectedCandidateId(null);
+                  } else {
+                    setSelectedCandidateId(candidate.candidate_id);
+                  }
+                }}
+              />
+            )
+          })}
         </div>
       </div>
 
