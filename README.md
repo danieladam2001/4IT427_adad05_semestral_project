@@ -65,7 +65,7 @@ npx vitest run
 │   ├── types/             # Definování TypeScript interface (pipeline.types.ts)
 │   ├── utils/             # Pomocné funkce (pipelineUtils.ts)
 │   ├── App.tsx            # Kořenová komponenta s definicí rout
-│   └── main.tsx           # Hlavní část aplikace (PipelineProvider, BrowserRouter, QueryClientProvider)
+│   └── main.tsx           # Hlavní soubor (PipelineProvider, BrowserRouter, QueryClientProvider)
 ├── public/
 │   └── pipeline.json      # Datová pipeline ve formátu JSON
 └── README.md              # Dokumentace projektu
