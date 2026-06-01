@@ -3,7 +3,7 @@ import { type PipelineDataRoot } from '../types/pipeline.types';
 import { useQuery } from "@tanstack/react-query";
 
 const fetchPipelineData = async (): Promise<PipelineDataRoot> => {
-  const response = await fetch("/public/pipeline.json");
+  const response = await fetch("/pipeline.json");
   if (!response.ok) {
     throw new Error(`Failed to fetch pipeline data: ${response.statusText}`);
   }
